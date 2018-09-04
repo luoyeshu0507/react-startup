@@ -1,0 +1,21 @@
+{
+  "presets": [
+    [
+      "env"
+    ],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    /* should always be the first plugin! */
+    "transform-decorators-legacy",
+    "transform-object-assign",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
+  ]
+}

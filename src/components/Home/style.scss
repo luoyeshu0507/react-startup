@@ -1,0 +1,196 @@
+.home {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  :global {
+    .app-content-bottom {
+      flex: 1 1 auto;
+      overflow: auto;
+      height: 100%;
+      .home-content {
+        min-height: 100%;
+        padding-bottom: 95px;
+        position: relative;
+        .banner {
+          height: 450px;
+          background: #2d2d2d url('./images/banner-bg.png') no-repeat center right;
+          background-size: cover;
+          overflow: hidden;
+          .text {
+            font-size: 30px;
+            color: #fff;
+            line-height: 42px;
+            margin-bottom: 30px;
+            text-align: left;
+          }
+          a {
+            display: block;
+            width: 120px;
+            height: 36px;
+            line-height: 34px;
+            border: 1px solid #fff;
+            text-align: center;
+            color: #fff;
+            background-color: #3F3F3F;
+            &:hover {
+              background-color: #1D81F7;
+            }
+          }
+        }
+        .data {
+          overflow: hidden;
+          background-color: #F5F6F9;
+          height: 120px;
+          i {
+            position: absolute;
+            right: 20px;
+            font-size: 50px;
+            top: 21px;
+            color: #EFEFF1;
+          }
+          .ant-row {
+            height: 100%;
+            > div {
+              height: 100%;
+              border-right: 1px solid #ddd;
+              span {
+                display: block;
+                margin: 20px 20px 10px;
+                font-size:14px;
+                color: #37393D;
+                line-height: 20px;
+                &:after {
+                  content: '';
+                  height: 2px;
+                  width: 20px;
+                  background-color: #1D81F7;
+                  display: block;
+                  margin: 5px 0 0 2px;
+                }
+              }
+              em {
+                font-style: normal;
+                font-size: 30px;
+                color: #37393D;
+                margin-left: 20px;
+              }
+            }
+            > div:last-child {
+              border-right: 0 none;
+            }
+          }
+        }
+        .title1 {
+          color: #444444;
+          font-size:24px;
+          line-height:34px;
+          margin-bottom: 15px;
+        }
+        .title2 {
+          color: #444444;
+          font-size: 18px;
+          line-height: 28px;
+        }
+        .text {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+        .des {
+          color: #666666;
+          font-size: 14px;
+          line-height: 28px;
+        }
+        .feature {
+          overflow: hidden;
+          padding: 70px 0;
+          text-align: center;
+          img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+          }
+          .title2 {
+            margin-bottom: 20px;
+          }
+          .des {
+            padding: 0 20px;
+          }
+        }
+        .intro {
+          padding: 70px 0;
+          overflow: hidden;
+          background: #F5F6F9 url('./images/intro-bg.png') no-repeat right center;
+          background-size: contain;
+          .title1 {
+            margin-left: 8.33%;
+            margin-bottom: 30px;
+          }
+          .des {
+            margin-left: 8.33%;
+            margin-right: 25%;
+          }
+        }
+        .app {
+          padding-top: 70px;
+          text-align: center;
+          .image {
+            margin-bottom: 10px;
+            img {
+              width: (132px) / 2;
+              height: (156px) / 2;
+            }
+          }
+          .title2 {
+            padding-bottom: 20px;
+          }
+          .ant-col-5 {
+            cursor: pointer;
+          }
+          .active {
+            &:after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 0;
+              height: 0;
+              border: 14px solid transparent;
+              border-bottom-color: #F5F6F9;
+              margin-left: -14px;
+            }
+          }
+        }
+        .app-detail {
+          padding: 40px 0;
+          background-color: #F5F6F9;
+          .title2 {
+            margin-bottom: 10px;
+          }
+          .title2, .des {
+            margin: 0 15%;
+          }
+        }
+        .collaborate {
+          overflow: hidden;
+          padding: 70px 0;
+          .ant-row {
+            text-align: center;
+          }
+          img {
+            width: 100%;
+            max-width: 129px;
+            margin-bottom: 30px;
+          }
+        }
+        .footer {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

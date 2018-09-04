@@ -1,0 +1,43 @@
+@import '../../style/base.scss';
+
+:global {
+  .footer {
+    background-color: #2D2D2D;
+    height: 95px;
+    padding: 20px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 26px;
+    .links {
+      a {
+        color: #fff;
+        margin-right: 20px;
+        border-right: 1px solid #fff;
+        padding-right: 20px;
+        display: inline-block;
+        height: 12px;
+        line-height: 12px;
+        &:hover {
+          color: $color-gray;
+        }
+      }
+    }
+    .phone {
+      text-align: right;
+      em, span {
+        display: block;
+      }
+      span {
+        font-size: 16px;
+        i {
+          margin-right: 10px;
+        }
+      }
+      em {
+        font-style: normal;
+        color: #8F8F8F;
+        margin-right: 15px;
+      }
+    }
+  }
+}
