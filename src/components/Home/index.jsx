@@ -1,4 +1,3 @@
-import DeveloperNav from 'components/TopBar/developerNav'
 import Footer from 'components/Footer'
 import { Link } from 'react-router-dom'
 import { Col, Row } from 'antd'
@@ -57,7 +56,6 @@ export default class extends React.PureComponent {
   render() {
     return (
       <div className={style['home']}>
-        <DeveloperNav />
         <div className="app-content-bottom">
           <div className="home-content">
             <div className="banner">
