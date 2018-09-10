@@ -1,5 +1,6 @@
 node {
     stage('Results') {
+        sh 'ls';
         sh 'git --version';
         nodejs('nodejs') {
             sh 'node -v';
