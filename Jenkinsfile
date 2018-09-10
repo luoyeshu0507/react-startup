@@ -2,6 +2,7 @@ node {
     stage('Results') {
         sh 'git --version';
         git 'https://github.com/luoyeshu0507/react-startup';
+        sh 'git branch';
         nodejs('nodejs') {
             sh 'pwd';
             sh 'node -v';
