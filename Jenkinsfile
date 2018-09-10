@@ -2,7 +2,7 @@ node {
     stage('Results') {
         sh 'ls -a';
         sh 'git --version';
-        sh 'git clone https://github.com/luoyeshu0507';
+        sh 'git clone https://github.com/luoyeshu0507/react-startup';
         nodejs('nodejs') {
             sh 'node -v';
         }
