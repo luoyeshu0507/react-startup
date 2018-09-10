@@ -5,7 +5,7 @@ node {
         sh 'git clone https://github.com/luoyeshu0507/react-startup';
         nodejs('nodejs') {
             sh 'pwd';
-            sh 'cd react-startup';
+            sh 'cd ./react-startup';
             sh 'pwd';
             sh 'node -v';
             sh 'npm i';
