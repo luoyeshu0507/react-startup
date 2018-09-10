@@ -1,10 +1,12 @@
 node {
     stage('Results') {
-        sh 'ls -a';
         sh 'git --version';
         sh 'git clone https://github.com/luoyeshu0507/react-startup';
+        sh 'cd react-startup';
         nodejs('nodejs') {
             sh 'node -v';
+            sh 'npm i;
+            sh 'npm run build';
         }
         wrap([$class: 'BuildUser']) {
             user = user? user: BUILD_USER_ID;
