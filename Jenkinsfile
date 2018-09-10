@@ -5,7 +5,7 @@ node {
         sh 'cd react-startup';
         nodejs('nodejs') {
             sh 'node -v';
-            sh 'npm i;
+            sh 'npm i';
             sh 'npm run build';
         }
         wrap([$class: 'BuildUser']) {
