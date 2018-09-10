@@ -1,6 +1,7 @@
 node {
     stage('Results') {
         sh 'git --version';
+        sh 'rm -rf react-startup';
         sh 'git clone https://github.com/luoyeshu0507/react-startup';
         nodejs('nodejs') {
             sh 'pwd';
