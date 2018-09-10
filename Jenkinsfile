@@ -23,5 +23,6 @@ node {
             }" > /www/jenkins-nginx-conf/${BUILD_USER_ID}.txt''';
         }
         build 'xx';
+        cleanWs()
     }
 }
