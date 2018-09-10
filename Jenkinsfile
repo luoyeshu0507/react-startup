@@ -2,6 +2,7 @@ node {
     stage('Results') {
         sh 'ls -a';
         sh 'git --version';
+        sh 'git clone https://github.com/luoyeshu0507';
         nodejs('nodejs') {
             sh 'node -v';
         }
