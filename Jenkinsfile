@@ -41,13 +41,8 @@ node {
         if (userid) {
             echo "deoloping for ${userid}...";
             def distpath = "/www/jenkins-dist/${userid}-${BUILD_ID}";
-            echo "${distpath}";
-            sh '''if [ ! -d ${distpath} ]; then
-              mkdir -p ${distpath}
-            fi''';
-
+            sh "mkdir -p ${distpath}";
             sh "cp -R ./dist/* ${distpath}";
-
             sh '''echo "server {
                 listen       80;
                 server_name  ${userid}.oa.luoyeshu.com;
