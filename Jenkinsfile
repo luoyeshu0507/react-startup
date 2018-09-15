@@ -51,7 +51,7 @@ node {
                     root   ${distpath};
                     index  index.html index.htm;
                 }
-            }" > /www/jenkins-nginx-conf/${userid}.txt""";
+            }" > /www/jenkins-nginx-conf/${userid}.conf""";
             build 'xx';
         }
     }
