@@ -38,23 +38,33 @@ node {
         }
     }
     stage('Personal Deploy') {
-        sh '''if [ ! -d "/www/jenkins-dist/${userid}-${BUILD_ID}" ]; then
-          mkdir -p "/www/jenkins-dist/${userid}-${BUILD_ID}"
-        fi''';
-        
-        sh "cp -R ./dist/* /www/jenkins-dist/${userid}-${BUILD_ID}";
-        
-        sh '''echo "server {
-            listen       80;
-            server_name  ${userid}.oa.luoyeshu.com;
+        if (userid) {
+            echo "deoloping for ${userid}...";
+            sh '''if [ ! -d /www/jenkins-dist/${userid}-${BUILD_ID} ]; then
+              mkdir -p /www/jenkins-dist/${userid}-${BUILD_ID}
+            fi''';
 
-            location / {
-                root   /www/jenkins-dist/${userid}-${BUILD_ID};
-                index  index.html index.htm;
-            }
-        }" > /www/jenkins-nginx-conf/${userid}.txt''';
+            sh "cp -R ./dist/* /www/jenkins-dist/${userid}-${BUILD_ID}";
+
+            sh '''echo "server {
+                listen       80;
+                server_name  ${userid}.oa.luoyeshu.com;
+
+                location / {
+                    root   /www/jenkins-dist/${userid}-${BUILD_ID};
+                    index  index.html index.htm;
+                }
+            }" > /www/jenkins-nginx-conf/${userid}.txt''';
+            build 'xx';
+        }
     }
-    stage('Restart Nginx') {
-        build 'xx';
+    stage('oa Deploy') {
+    
+    }
+    stage('prod Deploy') {
+    
+    }
+    stage('online Deploy') {
+    
     }
 }
