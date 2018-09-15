@@ -56,12 +56,55 @@ node {
         }
     }
     stage('oa Deploy') {
-    
+        input message: '', submitter: 'luoyeshu', submitterParameter: 'approver';
+        def distpath = "/www/jenkins-dist/oa-with-develop-${BUILD_ID}";
+        sh "mkdir -p ${distpath}";
+        sh "cp -R ./dist/* ${distpath}";
+        sh """echo "server {
+            listen       80;
+            server_name  oa.luoyeshu.com;
+
+            location / {
+                root   ${distpath};
+                index  index.html index.htm;
+            }
+        }" > /www/jenkins-nginx-conf/oa-with-develop.conf""";
+        build 'xx';
     }
     stage('prod Deploy') {
-    
+        input message: '', submitter: 'luoyeshu', submitterParameter: 'approver';
+        sh 'git checkout origin/master';
+        nodejs('nodejs') {
+            sh 'npm run build';
+        }
+        def distpath = "/www/jenkins-dist/prod-with-master-${BUILD_ID}";
+        sh "mkdir -p ${distpath}";
+        sh "cp -R ./dist/* ${distpath}";
+        sh """echo "server {
+            listen       80;
+            server_name  prod.luoyeshu.com;
+
+            location / {
+                root   ${distpath};
+                index  index.html index.htm;
+            }
+        }" > /www/jenkins-nginx-conf/prod-with-master.conf""";
+        build 'xx';
     }
     stage('online Deploy') {
-    
+        input message: '', submitter: 'luoyeshu', submitterParameter: 'approver';
+        def distpath = "/www/jenkins-dist/online-with-master-${BUILD_ID}";
+        sh "mkdir -p ${distpath}";
+        sh "cp -R ./dist/* ${distpath}";
+        sh """echo "server {
+            listen       80;
+            server_name  prod.luoyeshu.com;
+
+            location / {
+                root   ${distpath};
+                index  index.html index.htm;
+            }
+        }" > /www/jenkins-nginx-conf/online-with-master.conf""";
+        build 'xx';
     }
 }
