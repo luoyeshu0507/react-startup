@@ -45,13 +45,13 @@ node {
             sh "cp -R ./dist/* ${distpath}";
             sh '''echo "server {
                 listen       80;
-                server_name  ${userid}.oa.luoyeshu.com;
+                server_name  ${userid}\.oa.luoyeshu.com;
 
                 location / {
                     root   ${distpath};
                     index  index.html index.htm;
                 }
-            }" > /www/jenkins-nginx-conf/${userid}.txt''';
+            }" > /www/jenkins-nginx-conf/${userid}\.txt''';
             build 'xx';
         }
     }
