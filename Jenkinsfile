@@ -1,29 +1,60 @@
 node {
-    stage('Results') {
-        sh 'git --version';
-        git 'https://github.com/luoyeshu0507/react-startup';
-        sh 'git branch';
+    def userid;
+    stage('Compare') {
+        git branch: 'develop', url: 'https://github.com/luoyeshu0507/react-startup';
+        sh 'git branch -a';
+        
+        echo "${branch}";
+        if (branch.length() > 0) {
+            echo "Merge all branchs(${branch}) to develop...";
+            barr = branch.split();
+            echo "${barr}";
+            for (item in barr) {
+                sh "git merge origin/${item}";
+            }
+        }
+        
+        wrap([$class: 'BuildUser']) {
+            userid = env.BUILD_USER_ID;
+        }
+        
+        echo "${userid} triggerd this build!";
+    }
+    stage('Install') {
         nodejs('nodejs') {
-            sh 'pwd';
             sh 'node -v';
             sh 'npm i';
+        }
+    }
+    stage('Lint') {
+        echo 'Run es lint...';
+    }
+    stage('Tests') {
+        echo 'Run tests...';
+    }
+    stage('Build') {
+        nodejs('nodejs') {
             sh 'npm run build';
         }
-        wrap([$class: 'BuildUser']) {
-            user = user? user: BUILD_USER_ID;
-            echo "${user}";
-            echo "${BUILD_USER_ID}"
-            sh '''echo "server {
-                listen       80;
-                server_name  ${BUILD_USER_ID}.luoyeshu.com;
-
-                location / {
-                    root   /www/jenkins-dist/${BUILD_ID};
-                    index  index.html index.htm;
-                }
-            }" > /www/jenkins-nginx-conf/${BUILD_USER_ID}.txt''';
-        }
-        build 'xx';
+    }
+    stage('Personal Deploy') {
+        sh '''if [ ! -d "/www/jenkins-dist/${userid}-${BUILD_ID}" ]; then
+          mkdir -p "/www/jenkins-dist/${userid}-${BUILD_ID}"
+        fi''';
         
+        sh "cp -R ./dist/* /www/jenkins-dist/${userid}-${BUILD_ID}";
+        
+        sh '''echo "server {
+            listen       80;
+            server_name  ${userid}.oa.luoyeshu.com;
+
+            location / {
+                root   /www/jenkins-dist/${userid}-${BUILD_ID};
+                index  index.html index.htm;
+            }
+        }" > /www/jenkins-nginx-conf/${userid}.txt''';
+    }
+    stage('Restart Nginx') {
+        build 'xx';
     }
 }
