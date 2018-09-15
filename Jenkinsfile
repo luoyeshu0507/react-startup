@@ -40,18 +40,19 @@ node {
     stage('Personal Deploy') {
         if (userid) {
             echo "deoloping for ${userid}...";
-            sh '''if [ ! -d /www/jenkins-dist/${userid}-${BUILD_ID} ]; then
-              mkdir -p /www/jenkins-dist/${userid}-${BUILD_ID}
+            def distpath = "/www/jenkins-dist/${userid}-${BUILD_ID}";
+            sh '''if [ ! -d ${distpath} ]; then
+              mkdir -p ${distpath}
             fi''';
 
-            sh "cp -R ./dist/* /www/jenkins-dist/${userid}-${BUILD_ID}";
+            sh "cp -R ./dist/* ${distpath}";
 
             sh '''echo "server {
                 listen       80;
                 server_name  ${userid}.oa.luoyeshu.com;
 
                 location / {
-                    root   /www/jenkins-dist/${userid}-${BUILD_ID};
+                    root   ${distpath};
                     index  index.html index.htm;
                 }
             }" > /www/jenkins-nginx-conf/${userid}.txt''';
