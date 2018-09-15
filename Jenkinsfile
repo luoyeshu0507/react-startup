@@ -1,6 +1,6 @@
 node {
     def userid;
-    stage('Compare') {
+    stage('Prepare') {
         git branch: 'develop', url: 'https://github.com/luoyeshu0507/react-startup';
         sh 'git branch -a';
         
