@@ -2,5 +2,4 @@
 
 This project is used for testing jenkins.
 
-# Build status
-[![Build Status](http://jenkins.luoyeshu.com/buildStatus/icon?job=react-startup-pipeline)](http://jenkins.luoyeshu.com/job/react-startup-pipeline/)
+[![Build Status](http://jenkins.luoyeshu.com/buildStatus/icon?job=react-startup-pipeline)](http://jenkins.luoyeshu.com/job/react-startup-pipeline)
